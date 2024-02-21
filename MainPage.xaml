@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MagicRecipe.MainPage">
+    
+    
+    <ContentPage.Resources>
+        
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Yellow" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <Grid Margin="10" RowDefinitions="30,*,60" BackgroundColor="LightGoldenrodYellow">
+        <Label Grid.Row="0" Text="Select your ingredients :)" HeightRequest="70" HorizontalTextAlignment="Center" FontSize="Body" TextColor="Black" BackgroundColor="Yellow"/>
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Ingredients}"
+                        ItemsLayout="VerticalGrid, 3"
+                SelectionMode="Multiple"
+                SelectionChanged="OnSelectionChanged" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid 
+                          WidthRequest="60" 
+                          HeightRequest="120">
+                         <Image Margin="10" BackgroundColor="Transparent"
+                                  Source="{Binding Image}"/>
+ 
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="2" 
+                Text="Generate Recipes" 
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="End"
+                Clicked="gotosecondpage"/>
+
+    </Grid>
+    
+</ContentPage>
